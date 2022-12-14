@@ -51,12 +51,16 @@ export default function UrlShort(){
             orgUrl: document.getElementById('orginalURL').value,
             shortWith: document.getElementById('shorten').value
         };
+        if(item.orgUrl.length == 0 || !item.orgUrl){
+            document.getElementById('result').innerHTML=' URL Input cannot be blank';
+            return null;
+        }
         item.shortWith=item.shortWith.replace('/','-');
-        document.getElementById('result').innerHTML=`Successfully shorten with ${document.getElementById('shorten').value} !`;
         document.getElementById('orginalURL').value='';
         document.getElementById('shorten').value='';
         axios.post('/shortners',item)
         .then((resp)=>{
+            document.getElementById('result').innerHTML=`Successfully shorten with ${item.shortWith} !`;
             dispatch({
                 type: 'ADD_ITEM',
                 payload: item
