@@ -1,3 +1,4 @@
+require('dotenv').config({path: __dirname + '/.env'})
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,7 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var router=require('./routes/index');
 var shortnerRouter=require('./routes/shorten');
-const MONGODB_URI ='mongodb+srv://Admin_url_shortner:yashu_909@urlshortner.dnbzc.mongodb.net/conFusion?retryWrites=true&w=majority';
+const MONGODB_URI =process.env.MONGODB_URL;
 const url = 'mongodb://localhost:27017/conFusion';
 mongoose.connect(MONGODB_URI,{
   useNewUrlParser: true,
